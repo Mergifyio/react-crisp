@@ -3,7 +3,6 @@ pull_request_rules:
     conditions:
       - base=master
       - "#approved-reviews-by>=1"
-      - label!=work-in-progress
       - label!=manual merge
       - "check-success=lintSrc (10.x)"
       - "check-success=lintSrc (12.x)"
@@ -11,19 +10,7 @@ pull_request_rules:
     actions:
       merge:
         strict: "smart"
-        method: rebase
-  - name: automatic merge from dependabot
-    conditions:
-      - author=dependabot[bot]
-      - label!=work-in-progress
-      - label!=manual merge
-      - "check-success=lintSrc (10.x)"
-      - "check-success=lintSrc (12.x)"
-      - "check-success=lintSrc (14.x)"
-    actions:
-      merge:
-        strict: "smart"
-        method: rebase
+        method: squash
   - name: warn on conflicts
     conditions:
       - conflict
@@ -42,19 +29,18 @@ pull_request_rules:
           - conflict
   - name: dismiss reviews
     conditions:
-      - author!=@devs
+      - author!=@react-crisp
     actions:
       dismiss_reviews: {}
   - name: dismiss reviews for core devs
     conditions:
-      - author=@devs
+      - author=@react-crisp
     actions:
       dismiss_reviews:
         # Do not remove approval for core devs
         approved: false
   - name: request review
     conditions:
-      - -author=dependabot[bot]
       - label!=work-in-progress
       - label!=no-review-needed
       - -merged
@@ -67,10 +53,4 @@ pull_request_rules:
     actions:
       request_reviews:
         teams:
-          - devs
-  - name: auto add wip
-    conditions:
-      - title~=^(wip|WIP).*
-    actions:
-      label:
-        add: ["work-in-progress"]
+          - react-crisp
