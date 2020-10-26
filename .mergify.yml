@@ -5,6 +5,9 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
       - label!=work-in-progress
       - label!=manual merge
+      - "check-success=lintSrc (10.x)"
+      - "check-success=lintSrc (12.x)"
+      - "check-success=lintSrc (14.x)"
     actions:
       merge:
         strict: "smart"
@@ -14,6 +17,9 @@ pull_request_rules:
       - author=dependabot[bot]
       - label!=work-in-progress
       - label!=manual merge
+      - "check-success=lintSrc (10.x)"
+      - "check-success=lintSrc (12.x)"
+      - "check-success=lintSrc (14.x)"
     actions:
       merge:
         strict: "smart"
@@ -55,6 +61,9 @@ pull_request_rules:
       - -closed
       - "#approved-reviews-by=0"
       - "#changes-requested-reviews-by=0"
+      - "check-success=lintSrc (10.x)"
+      - "check-success=lintSrc (12.x)"
+      - "check-success=lintSrc (14.x)"
     actions:
       request_reviews:
         teams:
