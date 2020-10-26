@@ -21,7 +21,7 @@ class Crisp extends React.Component {
   componentDidMount() {
     this.setUpCrisp();
     this.setAttributes();
-    this.safeMode();
+    this.setSafeMode();
     insertScript();
   }
 
@@ -61,7 +61,7 @@ class Crisp extends React.Component {
 
   render() {
     return (
-      <></>
+      ''
     );
   }
 }
