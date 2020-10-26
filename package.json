@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "React component implementation of Crisp the messaging app",
   "homepage": "https://github.com/Mergifyio/react-crisp",
+  "main": "./src/Crisp.jsx",
   "keywords": [
     "React",
     "Crisp",
@@ -12,15 +13,14 @@
     "type": "git",
     "url": "https://github.com/Mergifyio/react-crisp"
   },
-  "scripts": {
-    "build": "webpack"
-  },
   "eslintConfig": {
     "env": {
       "browser": true
     },
     "extends": [
-      "airbnb"
+      "airbnb",
+      "plugin:import/errors",
+      "plugin:import/warnings"
     ]
   },
   "browserslist": {
@@ -35,10 +35,10 @@
       "last 1 safari version"
     ]
   },
-  "peerDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+  "dependencies": {
+    "prop-types": "^15.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "eslint": "^7.11.0",
