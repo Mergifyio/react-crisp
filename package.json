@@ -1,6 +1,6 @@
 {
   "name": "react-crisp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "Apache-2.0",
   "description": "React component implementation of Crisp the messaging app",
   "homepage": "https://github.com/Mergifyio/react-crisp",
