@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "description": "React component implementation of Crisp the messaging app",
   "homepage": "https://github.com/Mergifyio/react-crisp",
-  "main": "./src/Crisp.jsx",
+  "main": "./dist/crisp.js",
   "keywords": [
     "React",
     "Crisp",
@@ -24,19 +24,11 @@
       "plugin:import/warnings"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "dependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "babel-loader": "^8.2.0",
     "prop-types": "^15.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
@@ -50,9 +42,12 @@
     "eslint-plugin-import-order-alphabetical": "^1.0.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-module": "^0.1.0"
   },
   "scripts": {
-    "eslint": "eslint --ext .js --ext .jsx ./src"
+    "eslint": "eslint --ext .js --ext .jsx ./src",
+    "build": "webpack"
   }
 }
