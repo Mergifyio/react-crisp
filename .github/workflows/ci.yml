@@ -1,6 +1,6 @@
 # This workflow will run eslint for the package
 
-name: Package CI
+name: CI
 
 on:
   push:
@@ -9,16 +9,12 @@ on:
     branches: [ master ]
 
 jobs:
-  lintSrc:
+  eslint:
     runs-on: ubuntu-latest    
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
     steps:
       - uses: actions/checkout@v2
-      - name: use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+      - uses: actions/setup-node@v1
+          with:
+            node-version: 14
       - run: yarn install
       - run: yarn run eslint
