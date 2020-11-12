@@ -40,6 +40,19 @@ import Crisp from 'react-crisp';
 
 For a complete list of attributes please see the [Crisp's Docs](https://help.crisp.chat/en/article/how-to-use-dollarcrisp-javascript-sdk-10ud15y/#2-set-a-value).
 
+# Runtime Configuration
+
+```javascript
+<Crisp
+    crispWebsiteId="the-website-id-given-by-crisp" // Required
+    crispTokenId="a-unique-token-for-the-user"
+    configuration={{
+        "position:reverse": [true],
+    }}
+/>
+```
+For a complete list of parameters please see the [Crisp's Docs](https://help.crisp.chat/en/article/how-to-use-dollarcrisp-javascript-sdk-10ud15y/#2-changes-runtime-configuration).
+
 # Safe mode
 
 To prevent Crisp to emit errors when an exception occurs, you may enable the Safe Mode (see [Crisp's Docs](https://help.crisp.chat/en/article/how-to-use-dollarcrisp-javascript-sdk-10ud15y/#1-disable-warnings-amp-errors). With `react-crisp` it's done like this:
