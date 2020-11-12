@@ -38,7 +38,7 @@ class Crisp extends React.Component {
     if (crispTokenId !== '') {
       window.CRISP_TOKEN_ID = crispTokenId;
     }
-    if (crispRuntimeConfig.length > 0) {
+    if (Object.keys(crispRuntimeConfig).length > 0) {
       window.CRISP_RUNTIME_CONFIG = crispRuntimeConfig;
     }
   }
