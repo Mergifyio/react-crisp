@@ -1,2 +1,4 @@
 .mergify.yml
 .github/
+src/
+webpack.config.js
