@@ -46,7 +46,7 @@ class Crisp extends React.Component {
   setAttributes() {
     const { attributes } = this.props;
 
-    if (attributes !== {}) {
+    if (Object.keys(attributes).length > 0) {
       const categories = Object.entries(attributes);
 
       categories.map((category) => {
@@ -59,7 +59,7 @@ class Crisp extends React.Component {
   setConfiguration() {
     const { configuration } = this.props;
 
-    if (configuration !== {}) {
+    if (Object.keys(configuration).length > 0) {
       const parameters = Object.entries(configuration);
 
       parameters.map((parameter) => {
