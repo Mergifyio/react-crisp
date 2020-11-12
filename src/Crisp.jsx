@@ -15,12 +15,14 @@ class Crisp extends React.Component {
 
     this.setUpCrisp = this.setUpCrisp.bind(this);
     this.setAttributes = this.setAttributes.bind(this);
+    this.setConfiguration = this.setConfiguration.bind(this);
     this.setSafeMode = this.setSafeMode.bind(this);
   }
 
   componentDidMount() {
     this.setUpCrisp();
     this.setAttributes();
+    this.setConfiguration();
     this.setSafeMode();
     insertScript();
   }
@@ -54,6 +56,19 @@ class Crisp extends React.Component {
     }
   }
 
+  setConfiguration() {
+    const { configuration } = this.props;
+
+    if (configuration !== {}) {
+      const parameters = Object.entries(configuration);
+
+      parameters.map((parameter) => {
+        const [key, value] = parameter;
+        return window.$crisp.push(['config', key, value]);
+      });
+    }
+  }
+
   setSafeMode() {
     const { safeMode } = this.props;
     window.$crisp.push(['safe', safeMode]);
@@ -70,12 +85,14 @@ Crisp.propTypes = {
   crispTokenId: PropTypes.string,
   crispRuntimeConfig: PropTypes.objectOf(PropTypes.element),
   attributes: PropTypes.objectOf(PropTypes.node),
+  configuration: PropTypes.objectOf(PropTypes.node),
   safeMode: PropTypes.bool,
 };
 Crisp.defaultProps = {
   crispTokenId: '',
   crispRuntimeConfig: {},
   attributes: {},
+  configuration: {},
   safeMode: false,
 };
 
