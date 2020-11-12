@@ -40,7 +40,7 @@ import Crisp from 'react-crisp';
 
 For a complete list of attributes please see the [Crisp's Docs](https://help.crisp.chat/en/article/how-to-use-dollarcrisp-javascript-sdk-10ud15y/#2-set-a-value).
 
-# Runtime Configuration
+# Configuration
 
 ```javascript
 <Crisp
@@ -62,3 +62,16 @@ To prevent Crisp to emit errors when an exception occurs, you may enable the Saf
     safeMode
 />
 ```
+
+# Set `CRISP_RUNTIME_CONFIG`
+
+```javascript
+<Crisp
+    crispWebsiteId="the-website-id-given-by-crisp" // Required
+    crispRuntimeConfig={{
+      session_merge: true,
+    }}
+/>
+```
+
+For more details about the variable `CRISP_RUNTIME_CONFIG` see [Crisp's Docs](https://help.crisp.chat/en/).
