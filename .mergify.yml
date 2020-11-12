@@ -5,6 +5,7 @@ pull_request_rules:
       - "#approved-reviews-by>=1"
       - label!=manual merge
       - "check-success=eslint"
+      - "check-success=tests"
     actions:
       merge:
         strict: "smart"
@@ -46,6 +47,7 @@ pull_request_rules:
       - "#approved-reviews-by=0"
       - "#changes-requested-reviews-by=0"
       - "check-success=eslint"
+      - "check-success=tests"
     actions:
       request_reviews:
         teams:

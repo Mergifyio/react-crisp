@@ -83,9 +83,21 @@ class Crisp extends React.Component {
 Crisp.propTypes = {
   crispWebsiteId: PropTypes.string.isRequired,
   crispTokenId: PropTypes.string,
-  crispRuntimeConfig: PropTypes.objectOf(PropTypes.element),
-  attributes: PropTypes.objectOf(PropTypes.node),
-  configuration: PropTypes.objectOf(PropTypes.node),
+  crispRuntimeConfig: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ])),
+  attributes: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ])),
+  configuration: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ])),
   safeMode: PropTypes.bool,
 };
 Crisp.defaultProps = {
