@@ -32,8 +32,8 @@ import Crisp from 'react-crisp';
     crispWebsiteId="the-website-id-given-by-crisp" // Required
     crispTokenId="a-unique-token-for-the-user"
     attributes={{
-        "user.email": ["foo@bar.com"],
-        "user.nickname": ["foo42"],
+        "user:email": ["foo@bar.com"],
+        "user:nickname": ["foo42"],
     }}
 />
 ```
