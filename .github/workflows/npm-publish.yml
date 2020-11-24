@@ -4,6 +4,9 @@ name: Publish Package
 on:
   release:
     types: [released]
+  
+  # Allow to run it manually
+  workflow_dispatch:
 
 jobs:
   publish-npm:
