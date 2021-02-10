@@ -19,7 +19,7 @@ function pushCrisp(method, parameters) {
     const items = Object.entries(parameters);
     items.map((item) => {
       const [key, value] = item;
-      return global.$crisp.push(['set', key, value]);
+      return global.$crisp.push([method, key, value]);
     });
   }
 }
