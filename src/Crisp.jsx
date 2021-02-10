@@ -79,17 +79,10 @@ Crisp.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
+    PropTypes.array,
   ])),
-  attributes: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-  ])),
-  configuration: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-  ])),
+  attributes: PropTypes.objectOf(PropTypes.array),
+  configuration: PropTypes.objectOf(PropTypes.array),
   safeMode: PropTypes.bool,
 };
 Crisp.defaultProps = {
