@@ -1,17 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
-function insertScript() {
-  const scriptUrl = 'https://client.crisp.chat/l.js';
-  const scripts = document.querySelector(`script[src='${scriptUrl}']`);
-  if (scripts === null) {
-    const script = document.createElement('script');
-
-    script.src = scriptUrl;
-    script.async = 1;
-
-    document.head.appendChild(script);
-  }
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
 }
 
 function pushCrisp(method, parameters) {
@@ -24,52 +19,65 @@ function pushCrisp(method, parameters) {
   }
 }
 
-class Crisp extends React.Component {
-  constructor(props) {
-    super(props);
+function Crisp(props) {
+  const {
+    crispWebsiteId,
+    crispTokenId,
+    crispRuntimeConfig,
+    safeMode,
+    configuration,
+    attributes,
+  } = props;
 
-    this.configCrisp = this.configCrisp.bind(this);
+  const previousCrispWebsiteId = usePrevious(crispWebsiteId);
+  if (previousCrispWebsiteId && previousCrispWebsiteId !== crispWebsiteId) {
+    throw Error("crispWebsiteId can't be changed");
+  }
+  const previousCrispTokenId = usePrevious(crispTokenId);
+  if (previousCrispTokenId && previousCrispTokenId !== crispTokenId) {
+    throw Error("crispTokenId can't be changed");
   }
 
-  componentDidMount() {
-    const {
-      crispWebsiteId, crispTokenId, crispRuntimeConfig, safeMode,
-    } = this.props;
+  const previousCrispRuntimeConfig = usePrevious(crispRuntimeConfig);
+  if (previousCrispRuntimeConfig && previousCrispRuntimeConfig !== crispRuntimeConfig) {
+    throw Error("crispRuntimeConfig can't be changed");
+  }
 
-    global.$crisp = [];
+  const previousSafeMode = usePrevious(safeMode);
+  if (previousSafeMode && previousSafeMode !== safeMode) {
+    throw Error("safeMode can't be changed");
+  }
 
+  if (global.$crisp === undefined) {
+    // Must be call before any other $crisp method
+    // https://help.crisp.chat/en/article/how-to-use-dollarcrisp-javascript-sdk-10ud15y/#1-disable-warnings-amp-errors
+    global.$crisp = [['safe', safeMode]];
+  }
+
+  // Custom configuration
+  pushCrisp('set', attributes);
+  pushCrisp('config', configuration);
+
+  const scriptUrl = 'https://client.crisp.chat/l.js';
+  const scripts = document.querySelector(`script[src='${scriptUrl}']`);
+  if (scripts === null) {
     // CRISP_WEBSITE_ID, CRISP_TOKEN_ID and CRISP_RUNTIME_CONFIG
     // must be declared before inserting the script
     // https://help.crisp.chat/en/article/how-to-restore-chat-sessions-with-a-token-c32v4t/
     // https://help.crisp.chat/en/article/how-to-use-crisp-with-reactjs-fe0eyz/
 
     global.CRISP_WEBSITE_ID = crispWebsiteId;
-
     global.CRISP_TOKEN_ID = crispTokenId;
-
     global.CRISP_RUNTIME_CONFIG = crispRuntimeConfig;
 
-    insertScript();
-
-    // Must be call before any other $crisp method
-    // https://help.crisp.chat/en/article/how-to-use-dollarcrisp-javascript-sdk-10ud15y/#1-disable-warnings-amp-errors
-    global.$crisp.push(['safe', safeMode]);
+    // We are good start Crisp
+    const script = document.createElement('script');
+    script.src = scriptUrl;
+    script.async = 1;
+    document.head.appendChild(script);
   }
 
-  componentDidUpdate() {
-    this.configCrisp();
-  }
-
-  configCrisp() {
-    const { configuration, attributes } = this.props;
-
-    pushCrisp('set', attributes);
-    pushCrisp('config', configuration);
-  }
-
-  render() {
-    return <></>;
-  }
+  return <></>;
 }
 
 Crisp.propTypes = {
