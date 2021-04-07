@@ -49,3 +49,12 @@ pull_request_rules:
       request_reviews:
         teams:
           - react-crisp
+  - name: Merge Dependabot's pull requests
+    conditions:
+      - author=dependabot[bot]
+      - "check-success=eslint"
+      - "check-success=tests"
+    actions:
+      merge:
+        strict: "smart"
+        method: rebase
