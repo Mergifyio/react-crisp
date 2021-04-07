@@ -15,7 +15,9 @@
     "url": "https://github.com/Mergifyio/react-crisp"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./jest.setup.js"]
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
   },
   "eslintConfig": {
     "env": {
