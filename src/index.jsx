@@ -5,7 +5,7 @@ function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {
     ref.current = value;
-  });
+  }, [value]);
   return ref.current;
 }
 
@@ -30,20 +30,19 @@ function Crisp(props) {
   } = props;
 
   const previousCrispWebsiteId = usePrevious(crispWebsiteId);
+  const previousCrispTokenId = usePrevious(crispTokenId);
+  const previousCrispRuntimeConfig = usePrevious(crispRuntimeConfig);
+  const previousSafeMode = usePrevious(safeMode);
+
   if (previousCrispWebsiteId && previousCrispWebsiteId !== crispWebsiteId) {
     throw Error("crispWebsiteId can't be changed");
   }
-  const previousCrispTokenId = usePrevious(crispTokenId);
   if (previousCrispTokenId && previousCrispTokenId !== crispTokenId) {
     throw Error("crispTokenId can't be changed");
   }
-
-  const previousCrispRuntimeConfig = usePrevious(crispRuntimeConfig);
   if (previousCrispRuntimeConfig && previousCrispRuntimeConfig !== crispRuntimeConfig) {
     throw Error("crispRuntimeConfig can't be changed");
   }
-
-  const previousSafeMode = usePrevious(safeMode);
   if (previousSafeMode && previousSafeMode !== safeMode) {
     throw Error("safeMode can't be changed");
   }
@@ -77,7 +76,7 @@ function Crisp(props) {
     document.head.appendChild(script);
   }
 
-  return <></>;
+  return <>no ways</>;
 }
 
 Crisp.propTypes = {

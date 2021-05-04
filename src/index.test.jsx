@@ -1,9 +1,7 @@
+import { render, waitFor } from '@testing-library/react';
 import React from 'react';
-import {
-  render, waitFor,
-} from '@testing-library/react';
 
-import Crisp from '../src/Crisp';
+import Crisp from './index';
 
 test('Crisp load', async () => {
   await render(<Crisp crispWebsiteId="foo-website-id-load" />);

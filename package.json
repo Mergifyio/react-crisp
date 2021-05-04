@@ -1,65 +1,92 @@
 {
-  "name": "react-crisp",
-  "version": "0.1.4",
-  "license": "Apache-2.0",
-  "description": "React component implementation of Crisp the messaging app",
-  "homepage": "https://github.com/Mergifyio/react-crisp",
-  "main": "./dist/crisp.js",
-  "keywords": [
-    "React",
-    "Crisp",
-    "npm"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Mergifyio/react-crisp"
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "./jest.setup.js"
-    ]
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true
+    "name": "react-crisp",
+    "version": "0.1.4",
+    "license": "Apache-2.0",
+    "description": "React component implementation of Crisp the messaging app",
+    "homepage": "https://github.com/Mergifyio/react-crisp",
+    "repository": "Mergifyio/react-crisp",
+    "main": "./dist/crisp.js",
+    "module": "dist/index.modern.js",
+    "source": "src/index.jsx",
+    "engines": {
+        "node": ">=10"
     },
-    "extends": [
-      "airbnb",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:jest/recommended"
+    "keywords": [
+        "React",
+        "Crisp",
+        "npm"
+    ],
+    "scripts": {
+        "build": "rollup -c",
+        "test": "run-s test:unit test:lint test:build",
+        "test:build": "run-s build",
+        "test:lint": "eslint --ext .js --ext .jsx .",
+        "test:unit": "cross-env CI=1 react-scripts test --env=jsdom"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "jest": true
+        },
+        "plugins": [
+            "eslint-plugin-import-order-alphabetical"
+        ],
+        "extends": [
+            "airbnb",
+            "plugin:import/errors",
+            "plugin:import/warnings"
+        ],
+        "rules": {
+            "import/order": [
+                "error",
+                {
+                    "newlines-between": "always-and-inside-groups"
+                }
+            ],
+            "import-order-alphabetical/order": "error",
+            "jsx-a11y/click-events-have-key-events": "off",
+            "jsx-a11y/no-static-element-interactions": "off",
+            "jsx-a11y/no-autofocus": "off",
+            "jsx-a11y/label-has-associated-control": "off",
+            "react/jsx-one-expression-per-line": "off",
+            "react/jsx-props-no-spreading": "off"
+        }
+    },
+    "peerDependencies": {
+        "prop-types": "^15.7.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.10.5",
+        "@babel/core": "^7.11.4",
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-react": "^7.10.4",
+        "@testing-library/dom": "^7.30.4",
+        "@testing-library/jest-dom": "^5.12.0",
+        "@testing-library/react": "^11.2.6",
+        "cross-env": "^7.0.2",
+        "eslint": "^7.11.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-import-order-alphabetical": "^1.0.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-react": "^7.23.2",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "jest-environment-jsdom-sixteen": "^2.0.0",
+        "jest-extended": "^0.11.5",
+        "npm-run-all": "^4.1.5",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-scripts": "^4.0.3",
+        "react-test-renderer": "^17.0.2",
+        "@rollup/plugin-babel": "^5.2.0",
+        "rollup": "^2.26.4",
+        "rollup-plugin-delete": "^2.0.0",
+        "rollup-plugin-peer-deps-external": "^2.2.3"
+    },
+    "files": [
+        "dist"
     ]
-  },
-  "dependencies": {
-    "prop-types": ">=15.0.0",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-react": "^7.12.5",
-    "@testing-library/react": "^11.1.2",
-    "babel-jest": "^26.6.3",
-    "babel-loader": "^8.2.0",
-    "eslint": "^7.11.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-module-utils": "^2.6.0",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-import-order-alphabetical": "^1.0.1",
-    "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "jest": "^26.6.3",
-    "webpack-cli": "^4.2.0",
-    "webpack-module": "^0.1.0"
-  },
-  "scripts": {
-    "eslint": "eslint --ext .js --ext .jsx ./src",
-    "build": "webpack",
-    "test": "jest"
-  }
 }
